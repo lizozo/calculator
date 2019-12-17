@@ -16,15 +16,19 @@ const App = () => {
   }, [input]);
 
   const addInput = val => {
-    isNaN(input.slice(-1)) && isNaN(val)
-      ? setInput(input.slice(0, -1) + val)
-      : setInput(input + val);
-    input.slice(0, 1) === "0" && input.length === 1 && val === "0"
-      ? setInput("0")
-      : setInput(input + val);
+    if (isNaN(input.slice(-1)) && isNaN(val)) {
+      setInput(input.slice(0, -1) + val);
+    } else {
+      setInput(input + val);
+    }
+    if (input.slice(0, 1) === "0" && input.length === 1 && val === "0") {
+      setInput("0");
+    } else {
+      setInput(input + val);
+    }
   };
   const handleEqual = () => {
-    setInput(answer + "");
+    answer ? setInput(answer + "") : setInput("");
   };
 
   return (
