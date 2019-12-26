@@ -18,11 +18,10 @@ const App = () => {
   const addInput = val => {
     if (isNaN(input.slice(-1)) && isNaN(val)) {
       setInput(input.slice(0, -1) + val);
-    } else {
-      setInput(input + val);
-    }
-    if (input.slice(0, 1) === "0" && input.length === 1 && val === "0") {
+    } else if (input.slice(0, 1) === "0" && input.length === 1 && val === "0") {
       setInput("0");
+    } else if (input.slice(0, 1) === "/" || input.slice(0, 1) === "*") {
+      setInput("");
     } else {
       setInput(input + val);
     }
